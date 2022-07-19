@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+.flex-container {
+  display: flex;
+}
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+.icon {
+  width: 30px;
+}
+.text-center {
+  text-align: center;
+}
+
+.left {
+  width: 250px;
+  margin: 20px;
+  padding: 10px;
+  border-right: 2px solid lightgrey;
+}
+
+.today,
+.card {
+  padding: 20px;
+  margin: 10px;
+}

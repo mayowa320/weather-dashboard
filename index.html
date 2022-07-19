@@ -4,18 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <h1 class="text-3xl font-bold underline text-center">Weather</h1>
-    <form id="form">
-      <div class="text-center">
-        <input id="city_search" placeholder="city..." />
-        <input type="submit" value="search" id="search_btn" />
+    <div class="flex-container">
+      <div class="left">
+        <form id="form">
+          <div>
+            <input id="city_search" placeholder="city..." />
+            <input type="submit" value="search" id="search_btn" />
+          </div>
+        </form>
+        <div class="buttons-container"></div>
       </div>
-    </form>
+      <div class="results">
+        <div class="today">
+          <h2 class="title" id="today-title"></h2>
+          <img class="icon" id="today-ico" src="" />
+          <p class="temp" id="today-temp"></p>
+          <p class="wind-speed" id="today-wind-speed"></p>
+          <p class="humidity" id="today-humidity"></p>
 
-    <div id="result" class="text-center area-container fade"></div>
-    <ul id="places" class="flex-container"></ul>
+          <p class="uv-index"></p>
+        </div>
+        <div class="future flex-container"></div>
+      </div>
+    </div>
   </body>
 </html>
