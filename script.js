@@ -45,7 +45,7 @@ let formSubmit = async (e) => {
   e.preventDefault();
   city = city_search_input.value;
   if (!Object.keys(weatherData).includes(city)) {
-    await getLatLon();
+    await getLatLon(city);
     await getWeather();
   }
   displayDetails();
@@ -55,7 +55,7 @@ let formSubmit = async (e) => {
 //   city = value;
 // });
 
-let getLatLon = async () => {
+let getLatLon = async (city) => {
   let respond = await fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${weatherAPIkey}`
   );
@@ -66,7 +66,7 @@ let getLatLon = async () => {
 };
 let getWeather = async () => {
   let respond = await fetch(
-    `http://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&appid=${weatherAPIkey}&units=imperial&cnt=6`
+    `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherAPIkey}&units=imperial&cnt=6`
   );
   let data = await respond.json();
   weatherData[city] = data;
@@ -83,13 +83,14 @@ let displayDetails = () => {
   // remember to create a container in html and CSS
   future.innerHTML = "";
   let data = weatherData[city];
+  console.log(weatherData);
   let list = data.list;
   let dt = new Date(list[0].dt * 1000);
   let dtstr = `${dt.getMonth()}/${dt.getDate()}/${dt.getFullYear()}`;
   todayTitle.innerHTML = `${city} (${dtstr})`;
-  todayTemp.innerHTML = "Temp: " + list[0].temp.day;
-  todayGust.innerHTML = "Wind Speed: " + list[0].gust;
-  todayHumid.innerHTML = "Humidity: " + list[0].humidity;
+  todayTemp.innerHTML = "Temp: " + list[0].main.temp;
+  todayGust.innerHTML = "Wind Speed: " + list[0].wind.gust;
+  todayHumid.innerHTML = "Humidity: " + list[0].main.humidity;
   let weather = list[0].weather;
   let todayId = weather[0].icon;
   todayImg.src = `http://openweathermap.org/img/wn/${todayId}@2x.png`;
@@ -113,9 +114,9 @@ let displayDetails = () => {
     iconImg.classList.add("icon");
 
     title.innerHTML = `${city} (${dtstr})`;
-    temp.innerHTML = "Temp: " + list[i].temp.day;
-    gust.innerHTML = "Wind Speed: " + list[i].gust;
-    humid.innerHTML = "Humidity: " + list[i].humidity;
+    temp.innerHTML = "Temp: " + list[i].main.temp;
+    gust.innerHTML = "Wind Speed: " + list[i].wind.gust;
+    humid.innerHTML = "Humidity: " + list[i].main.humidity;
     weather = list[0].weather;
     let id = weather[0].icon;
     iconImg.src = `http://openweathermap.org/img/wn/${id}@2x.png`;
