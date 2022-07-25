@@ -132,8 +132,4 @@ let displayDetails = () => {
   }
 
   today.style.border = "1px solid lightgrey";
-
-  //get description and set icons, css.
 };
-
-// gust, humidity, city, dt, description, UV Index.
