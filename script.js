@@ -57,7 +57,7 @@ let formSubmit = async (e) => {
 
 let getLatLon = async (city) => {
   let respond = await fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${weatherAPIkey}`
+    `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${weatherAPIkey}`
   );
 
   let data = await respond.json();
@@ -66,7 +66,7 @@ let getLatLon = async (city) => {
 };
 let getWeather = async () => {
   let respond = await fetch(
-    `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherAPIkey}&units=imperial&cnt=6`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${weatherAPIkey}&units=imperial&cnt=6`
   );
   let data = await respond.json();
   weatherData[city] = data;
@@ -93,7 +93,7 @@ let displayDetails = () => {
   todayHumid.innerHTML = "Humidity: " + list[0].main.humidity;
   let weather = list[0].weather;
   let todayId = weather[0].icon;
-  todayImg.src = `http://openweathermap.org/img/wn/${todayId}@2x.png`;
+  todayImg.src = `https://openweathermap.org/img/wn/${todayId}@2x.png`;
   //http://openweathermap.org/img/wn/10d@2x.png
 
   // loop through remaining values.
@@ -119,7 +119,7 @@ let displayDetails = () => {
     humid.innerHTML = "Humidity: " + list[i].main.humidity;
     weather = list[0].weather;
     let id = weather[0].icon;
-    iconImg.src = `http://openweathermap.org/img/wn/${id}@2x.png`;
+    iconImg.src = `https://openweathermap.org/img/wn/${id}@2x.png`;
     let card = document.createElement("div");
     card.classList.add("card");
     card.appendChild(title);
